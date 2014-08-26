@@ -33,5 +33,12 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('HomeCtrl', function($scope) {
+.controller('HomeCtrl', function($scope, $http) {
+  $scope.appointments = null
+  
+  $http.get('data/schedule_app_data.json')
+    .success(function(data, status, headers, config){
+      console.log('data success');
+      console.log(data);
+    })
 });
