@@ -33,8 +33,11 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('HomeCtrl', function($scope, $http) {
-  $scope.date = new Date();
+.controller('ScheduleCtrl', function($scope, $http, $state, $stateParams) {
+  var data_date_year = parseInt($stateParams.date.substring(0,4));
+  var data_date_month = parseInt($stateParams.date.substring(4,6));
+  var data_date_day = parseInt($stateParams.date.substring(6,9));
+  $scope.date = new Date(data_date_year, data_date_month -1, data_date_day);
   
   $http.get('data/schedule_app_data.json')
     .success(function(data, status, headers, config){

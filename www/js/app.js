@@ -47,14 +47,11 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
-    .state('app.home', {
-      url: "/home",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/home.html",
-          controller: 'HomeCtrl'
-        }
-      }
+
+    .state('schedule/:date', {
+      url: '/schedule/:date',
+      templateUrl: "templates/schedule.html",
+      controller: 'ScheduleCtrl'
     })
 
     .state('app.single', {
