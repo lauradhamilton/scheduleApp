@@ -34,7 +34,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('HomeCtrl', function($scope, $http) {
-  $scope.appointments = null
+  $scope.date = new Date();
   
   $http.get('data/schedule_app_data.json')
     .success(function(data, status, headers, config){
