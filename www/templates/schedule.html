@@ -5,16 +5,11 @@
 </div>
 
 <ion-content>
-  <div style="margin-top: 40px">
+  <div detect-gestures gesture-type="swipe" class="swipe" style="margin-top: 40px">
     <ion-list>
       <ion-item ng-repeat="appointment in appointments">
         {{appointment.appointment_time|date: 'h:mm a'}} {{appointment.appointment_type_description}} {{appointment.patient_first_name}}
       </ion-item>
     </ion-list>
   </div>
-  <div detect-gestures gesture-type="swipe" class="col swipe-box">
-                <p>
-                  Swipe Left Or Right Direction Inside Me!
-                </p>
-              </div>
 </ion-content>
