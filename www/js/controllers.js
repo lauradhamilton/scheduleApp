@@ -33,12 +33,25 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ScheduleCtrl', function($scope, $http, $state, $stateParams) {
+.controller('ScheduleCtrl', function($scope, $http, $state, $stateParams, $filter) {
   var data_date_year = parseInt($stateParams.date.substring(0,4));
   var data_date_month = parseInt($stateParams.date.substring(4,6));
   var data_date_day = parseInt($stateParams.date.substring(6,9));
   $scope.date = new Date(data_date_year, data_date_month -1, data_date_day);
+
+  var previous_date = $filter('date') (new Date(data_date_year, data_date_month-1, data_date_day -1), 'yyyyMMdd');
+  var next_date = $filter('date') (new Date(data_date_year, data_date_month-1, data_date_day +1), 'yyyyMMdd');
   
+  $scope.goToPreviousDate = function() {
+    $state.go('schedule/:date', {date: previous_date});
+    $stateParams.date = $scope.data_date;
+  }
+
+  $scope.goToNextDate = function() {
+    $state.go('schedule/:date', {date: next_date});
+    $stateParams.date = $scope.data_date
+  }
+
   $http.get('data/schedule_app_data.json')
     .success(function(data, status, headers, config){
       $scope.appointments = data;
