@@ -38,7 +38,6 @@ angular.module('starter.controllers', [])
   
   $http.get('data/schedule_app_data.json')
     .success(function(data, status, headers, config){
-      console.log('data success');
-      console.log(data);
+      $scope.appointments = data;
     })
 });
