@@ -33,7 +33,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ScheduleCtrl', function($scope, $http, $state, $stateParams, $filter) {
+.controller('ScheduleCtrl', function($scope, $http, $state, $stateParams, $filter, $timeout) {
   var data_date_year = parseInt($stateParams.date.substring(0,4));
   var data_date_month = parseInt($stateParams.date.substring(4,6));
   var data_date_day = parseInt($stateParams.date.substring(6,9));
@@ -50,6 +50,25 @@ angular.module('starter.controllers', [])
   $scope.goToNextDate = function() {
     $state.go('schedule/:date', {date: next_date});
     $stateParams.date = $scope.data_date
+  }
+
+  $scope.data = {
+    swipe : 0,
+    swiperight: 0,
+    swipeleft: 0,
+    tap : 0,
+    doubletap : 0,
+    scroll : 0
+  };
+
+  $scope.reportEvent = function(event)  {
+    console.log('Reporting : ' + event.type);
+    
+    $timeout(function() {
+      $scope.data[event.type]++;
+      $state.go('schedule/:date', {date: next_date});
+      $stateParams.date = $scope.date
+    })
   }
 
   $http.get('data/schedule_app_data.json')
