@@ -85,7 +85,7 @@ angular.module('starter.controllers', [])
     })
   }
 
-  $http.get('https://www.additiveanalytics.com/api/schedule_app_api?appointment_date=20140826')
+  $http.get('https://www.additiveanalytics.com/api/schedule_app_api?appointment_date=' + $stateParams.date)
     .success(function(data){
       $scope.appointments = data;
     })
