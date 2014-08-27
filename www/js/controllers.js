@@ -71,17 +71,14 @@ angular.module('starter.controllers', [])
   };
 
   $scope.reportEvent = function(event)  {
-    console.log('Reporting : ' + event.type);
     
     $timeout(function() {
       $scope.data[event.type]++;
       if (event.type == 'swipe' && event.gesture.direction == 'right') {
-        console.log(event.gesture.direction);
         $state.go('schedule/:date', {date: next_date});
         $stateParams.date = $scope.date
       }
       if (event.gesture.direction == 'left') {
-        console.log(event.gesture.direction);
         $state.go('schedule/:date', {date: previous_date});
         $stateParams.date = $scope.date
       }
