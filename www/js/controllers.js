@@ -33,7 +33,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('SplashCtrl', function($scope, $state, $filter) {
+.controller('SplashCtrl', function($scope, $state, $stateParams, $filter) {
   var today = $filter('date') (new Date(), 'yyyyMMdd');
   $scope.goToToday = function() {
     $state.go('schedule/:date', {date: today});
@@ -85,8 +85,8 @@ angular.module('starter.controllers', [])
     })
   }
 
-  $http.get('data/schedule_app_data.json')
-    .success(function(data, status, headers, config){
+  $http.get('https://www.additiveanalytics.com/api/schedule_app_api?appointment_date=20140826')
+    .success(function(data){
       $scope.appointments = data;
     })
 });
