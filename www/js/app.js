@@ -54,17 +54,13 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       controller: 'ScheduleCtrl'
     })
 
-    .state('app.single', {
-      url: "/playlists/:playlistId",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/playlist.html",
-          controller: 'PlaylistCtrl'
-        }
-      }
-    });
+    .state('/splash', {
+      url: '/splash',
+      templateUrl: 'templates/splash.html',
+      controller: 'SplashCtrl'
+    })
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/splash');
 })
 
 .directive('detectGestures', function($ionicGesture) {

@@ -33,6 +33,9 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('SplashCtrl', function($scope, $state) {
+})
+
 .controller('ScheduleCtrl', function($scope, $http, $state, $stateParams, $filter, $timeout) {
   var data_date_year = parseInt($stateParams.date.substring(0,4));
   var data_date_month = parseInt($stateParams.date.substring(4,6));
