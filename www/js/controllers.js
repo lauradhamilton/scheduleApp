@@ -33,11 +33,15 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('SplashCtrl', function($scope, $state) {
+.controller('SplashCtrl', function($scope, $state, $filter) {
+  var today = $filter('date') (new Date(), 'yyyyMMdd');
+  $scope.goToToday = function() {
+    $state.go('schedule/:date', {date: today});
+    $stateParams.date = $scope.today
+  }
 })
 
 .controller('ScheduleCtrl', function($scope, $http, $state, $stateParams, $filter, $timeout) {
-  $scope.today = new Date();
 
   var data_date_year = parseInt($stateParams.date.substring(0,4));
   var data_date_month = parseInt($stateParams.date.substring(4,6));
