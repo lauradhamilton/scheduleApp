@@ -4,7 +4,13 @@
      <h1 class="start">Physician Friend</h1>
    </div>
    <div class= "padding">
-     <div class="row" style="height: 500px">
+     <label class="item item-input">
+       <input type="email" placeholder="Email" ng-model="user.email">
+     </label>
+     <label class="item item-input">
+       <input type="password" placeholder="Password" ng-model="user.password">
+     </label>
+     <div class="row" style="height: 300px">
        <div class="col col-center">
      <button class ="button button-block" style="display: table-cell; vertical-align: middle" ng-click="goToToday()">
        Continue
