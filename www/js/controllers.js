@@ -37,6 +37,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ScheduleCtrl', function($scope, $http, $state, $stateParams, $filter, $timeout) {
+  $scope.today = new Date();
+
   var data_date_year = parseInt($stateParams.date.substring(0,4));
   var data_date_month = parseInt($stateParams.date.substring(4,6));
   var data_date_day = parseInt($stateParams.date.substring(6,9));
