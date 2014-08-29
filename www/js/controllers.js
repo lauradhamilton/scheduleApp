@@ -35,9 +35,15 @@ angular.module('starter.controllers', [])
 
 .controller('SplashCtrl', function($scope, $state, $stateParams, $filter) {
   var today = $filter('date') (new Date(), 'yyyyMMdd');
+  $scope.user = {
+      email: '',
+      password: '',
+      attending_abbreviation: ''
+    };
   $scope.goToToday = function() {
+    console.log($scope.user.attending_abbreviation);
     $state.go('schedule/:date', {date: today});
-    $stateParams.date = $scope.today
+    $stateParams.date = $scope.today;
   }
 })
 
@@ -85,8 +91,9 @@ angular.module('starter.controllers', [])
     })
   }
 
-  $http.get('https://www.additiveanalytics.com/api/schedule_app_api?appointment_date=' + $stateParams.date)
+  $http.get('https://www.additiveanalytics.com/api/schedule_app_api?appointment_date=' + $stateParams.date + "&attending_abbreviation=MARFEE")
     .success(function(data){
+      console.log($scope.attending_abbreviation);
       $scope.appointments = data;
     })
 });
