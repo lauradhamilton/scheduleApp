@@ -55,12 +55,12 @@ angular.module('starter.controllers', [])
   var next_date = $filter('date') (new Date(data_date_year, data_date_month-1, data_date_day +1), 'yyyyMMdd');
   
   $scope.goToPreviousDate = function() {
-    $state.go('schedule/MARFEE/:date', {date: previous_date});
+    $state.go('schedule/:attending_abbreviation/:date', {attending_abbreviation: 'MARFEE', date: previous_date});
     $stateParams.date = $scope.data_date;
   }
 
   $scope.goToNextDate = function() {
-    $state.go('schedule/MARFEE/:date', {date: next_date});
+    $state.go('schedule/:attending_abbreviation/:date', {attending_abbreviation: 'MARFEE', date: next_date});
     $stateParams.date = $scope.data_date
   }
 
@@ -78,11 +78,11 @@ angular.module('starter.controllers', [])
     $timeout(function() {
       $scope.data[event.type]++;
       if (event.type == 'swipe' && event.gesture.direction == 'left') {
-        $state.go('schedule/MARFEE/:date', {date: next_date});
+        $state.go('schedule/:attending_abbreviation/:date', {attending_abbreviation: 'MARFEE', date: next_date});
         $stateParams.date = $scope.date
       }
       if (event.gesture.direction == 'right') {
-        $state.go('schedule/MARFEE/:date', {date: previous_date});
+        $state.go('schedule/:attending_abbreviation/:date', {attending_abbreviation: 'MARFEE', date: previous_date});
         $stateParams.date = $scope.date
       }
     })
