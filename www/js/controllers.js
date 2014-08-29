@@ -35,12 +35,8 @@ angular.module('starter.controllers', [])
 
 .controller('SplashCtrl', function($scope, $state, $stateParams, $filter, User) {
   var today = $filter('date') (new Date(), 'yyyyMMdd');
-  $scope.user = {
-      email: User.email,
-      password: '',
-      attending_abbreviation: ''
-    };
-  console.log(User.email);
+  $scope.user = User;
+
   $scope.goToToday = function() {
     console.log($scope.user.attending_abbreviation);
     $state.go('schedule/:date', {date: today});
@@ -48,7 +44,8 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('ScheduleCtrl', function($scope, $http, $state, $stateParams, $filter, $timeout) {
+.controller('ScheduleCtrl', function($scope, $http, $state, $stateParams, $filter, $timeout, User) {
+  $scope.user = User;
 
   var data_date_year = parseInt($stateParams.date.substring(0,4));
   var data_date_month = parseInt($stateParams.date.substring(4,6));

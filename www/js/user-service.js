@@ -1,3 +1,7 @@
 scheduleApp.factory('User', function() {
-  return {email: "youremail"}
+  return {
+    email: "myemail",
+    password: "password",
+    attending_abbreviation: "MARFEE"
+  }
 })
