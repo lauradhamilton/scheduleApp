@@ -34,12 +34,18 @@ angular.module('starter.controllers', [])
 })
 
 .controller('SplashCtrl', function($scope, $state, $stateParams, $filter) {
+
+  $scope.user = {
+    email: 'FIXME@example.com',
+    password: 'password',
+    attending_abbreviation: 'MARFEE'
+  }
+
   var today = $filter('date') (new Date(), 'yyyyMMdd');
-  $scope.attending_abbreviation = '',
 
   $scope.goToToday = function() {
     $state.go('schedule/:attending_abbreviation/:date', {attending_abbreviation: 'MARFEE', date: today});
-    $stateParams.attending_abbreviation = $scope.attending_abbreviation;
+    $stateParams.attending_abbreviation = $scope.user.attending_abbreviation;
     $stateParams.date = $scope.today;
   }
 })
