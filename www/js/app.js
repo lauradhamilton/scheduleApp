@@ -55,8 +55,8 @@ var scheduleApp = angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
-    .state('schedule/:date', {
-      url: '/schedule/:date',
+    .state('schedule/:attending_abbreviation/:date', {
+      url: '/schedule/:attending_abbreviation/:date',
       templateUrl: "templates/schedule.html",
       controller: 'ScheduleCtrl'
     })
