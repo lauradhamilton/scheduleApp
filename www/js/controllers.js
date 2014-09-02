@@ -33,7 +33,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('SplashCtrl', function($scope, $state, $stateParams, $filter) {
+.controller('SplashCtrl', function($scope, $state, $stateParams, $filter, $http) {
 
   $scope.user = {
     email: '',
@@ -44,6 +44,10 @@ angular.module('starter.controllers', [])
   var today = $filter('date') (new Date(), 'yyyyMMdd');
 
   $scope.goToToday = function() {
+    $http.post("https://www.additiveanalytics.com/api_sessions", {"email":"laura+10@additiveanalytics.com","password":"6{tn_=)+}0jm-GL"})
+      .success(function(data){
+        console.log(data)
+      });
     $state.go('schedule/:attending_abbreviation/:date', {attending_abbreviation: $scope.user.attending_abbreviation, date: today});
     $stateParams.attending_abbreviation = $scope.user.attending_abbreviation;
     $stateParams.date = $scope.today;
