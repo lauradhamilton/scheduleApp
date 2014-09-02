@@ -44,9 +44,11 @@ angular.module('starter.controllers', [])
   var today = $filter('date') (new Date(), 'yyyyMMdd');
 
   $scope.goToToday = function() {
-    $http.post("https://www.additiveanalytics.com/api_sessions", {"email":"laura+10@additiveanalytics.com","password":"6{tn_=)+}0jm-GL"})
+    $http.post("http://localhost:3000/api_sessions", {"email":"laura@additiveanalytics.com","password":"good password"})
       .success(function(data){
-        console.log(data)
+        console.log(data.authentication_token);
+        localStorage.setItem("authentication_token", data.authentication_token);
+        localStorage.setItem("email", $scope.user.email);
       });
     $state.go('schedule/:attending_abbreviation/:date', {attending_abbreviation: $scope.user.attending_abbreviation, date: today});
     $stateParams.attending_abbreviation = $scope.user.attending_abbreviation;
@@ -98,7 +100,7 @@ angular.module('starter.controllers', [])
     })
   }
 
-  $http.get('https://www.additiveanalytics.com/api/schedule_app_api?appointment_date=' + $stateParams.date + "&attending_abbreviation=" + $stateParams.attending_abbreviation)
+  $http.get('http://localhost:3000/api/schedule_app_api?appointment_date=' + $stateParams.date + "&attending_abbreviation=" + $stateParams.attending_abbreviation)
     .success(function(data){
       $scope.appointments = data;
     })
