@@ -44,7 +44,7 @@ angular.module('starter.controllers', [])
   var today = $filter('date') (new Date(), 'yyyyMMdd');
 
   $scope.goToToday = function() {
-    $http.post("http://localhost:3000/api_sessions", {"email":"laura@additiveanalytics.com","password":"good password"})
+    $http.post("http://localhost:3000/api_sessions", {"email": $scope.user.email,"password": $scope.user.password})
       .success(function(data){
         console.log(data.authentication_token);
         localStorage.setItem("authentication_token", data.authentication_token);
