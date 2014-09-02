@@ -49,6 +49,7 @@ angular.module('starter.controllers', [])
         console.log(data.authentication_token);
         localStorage.setItem("authentication_token", data.authentication_token);
         localStorage.setItem("email", $scope.user.email);
+        localStorage.setItem("attending_abbreviation", $scope.user.attending_abbreviation)
       });
     $state.go('schedule/:attending_abbreviation/:date', {attending_abbreviation: $scope.user.attending_abbreviation, date: today});
     $stateParams.attending_abbreviation = $scope.user.attending_abbreviation;
