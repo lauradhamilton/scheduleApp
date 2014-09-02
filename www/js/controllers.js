@@ -47,8 +47,8 @@ angular.module('starter.controllers', [])
     $http.post("http://localhost:3000/api_sessions", {"email": $scope.user.email,"password": $scope.user.password})
       .success(function(data){
         console.log(data.authentication_token);
-        localStorage.setItem("authentication_token", data.authentication_token);
-        localStorage.setItem("email", $scope.user.email);
+        localStorage.setItem("user_token", data.authentication_token);
+        localStorage.setItem("user_email", $scope.user.email);
         localStorage.setItem("attending_abbreviation", $scope.user.attending_abbreviation)
       });
     $state.go('schedule/:attending_abbreviation/:date', {attending_abbreviation: $scope.user.attending_abbreviation, date: today});
@@ -101,7 +101,7 @@ angular.module('starter.controllers', [])
     })
   }
 
-  $http.get('http://localhost:3000/api/schedule_app_api?appointment_date=' + $stateParams.date + "&attending_abbreviation=" + $stateParams.attending_abbreviation)
+  $http.get('http://localhost:3000/api/schedule_app_api?appointment_date=' + $stateParams.date + "&attending_abbreviation=" + localStorage.getItem("attending_abbreviation") + "&user_email=" + localStorage.getItem("user_email") + "&user_token=" + localStorage.getItem("user_token"))
     .success(function(data){
       $scope.appointments = data;
     })
