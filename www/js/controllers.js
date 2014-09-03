@@ -44,7 +44,7 @@ angular.module('starter.controllers', [])
   var today = $filter('date') (new Date(), 'yyyyMMdd');
 
   $scope.goToToday = function() {
-    $http.post("http://localhost:3000/api_sessions", {"email": $scope.user.email,"password": $scope.user.password})
+    $http.post("https://www.additiveanalytics.com/api_sessions", {"email": $scope.user.email,"password": $scope.user.password})
       .success(function(data){
         console.log(data.authentication_token);
         localStorage.setItem("user_token", data.authentication_token);
@@ -101,7 +101,7 @@ angular.module('starter.controllers', [])
     })
   }
 
-  $http.post('http://localhost:3000/api/schedule_app_api?appointment_date=' + $stateParams.date + "&attending_abbreviation=" + localStorage.getItem("attending_abbreviation"),{"user_email":localStorage.getItem("user_email"), "user_token":localStorage.getItem("user_token")})
+  $http.post('https://www.additiveanalytics.com/api/schedule_app_api?appointment_date=' + $stateParams.date + "&attending_abbreviation=" + localStorage.getItem("attending_abbreviation"),{"user_email":localStorage.getItem("user_email"), "user_token":localStorage.getItem("user_token")})
     .success(function(data){
       $scope.appointments = data;
     })
