@@ -3,10 +3,10 @@
    <div class = "padding">
      <h1 class="start">Physician Friend</h1>
    </div>
-   <div class= "padding">
+   <div class= "padding" ng-controller="SplashCtrl">
    <form name="login_form" novalidate ng-submit="goToToday()">
-     <div class="error-container" ng-show="user.email.$dirty && user.email.$invalid">
-       <small class="error" ng-show="user.email.$error.required">
+     <div class="error-container" ng-show="login_form.email.$dirty && login_form.email.$invalid">
+       <small class="error" ng-show="login_form.email.$error.required">
          Your email is required.
        </small>
        <small class="error" ng-show="user.password.$error.required">
@@ -17,7 +17,7 @@
        </small>
      </div>
      <label class="item item-input">
-       <input type="email" placeholder="Email" ng-model="user.email" required>
+       <input type="email" placeholder="Email" ng-model="user.email" name="email" required>
      </label>
      <label class="item item-input">
        <input type="password" placeholder="Password" ng-model="user.password">
@@ -28,11 +28,11 @@
      <div class="row" style="height: 300px">
        <div class="col col-center">
          <button class ="button button-block" style="display: table-cell; vertical-align: middle" type="submit">
-           Continue
+           Login
          </button>
        </div>
      </div>
-   </form>
+   </div>
    </div>
   </ion-content>
 </ion-view>

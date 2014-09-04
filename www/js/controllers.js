@@ -43,7 +43,16 @@ angular.module('starter.controllers', [])
 
   var today = $filter('date') (new Date(), 'yyyyMMdd');
 
+  $scope.login_form = {
+    submitted: true
+  }
+
   $scope.goToToday = function() {
+    if ($scope.login_form.$valid) {
+      // Submit as normal
+    } else {
+      $scope.login_form.submitted = true;
+    }
     $http.post("https://www.additiveanalytics.com/api_sessions", {"email": $scope.user.email,"password": $scope.user.password})
       .success(function(data){
         console.log(data.authentication_token);
