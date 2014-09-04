@@ -52,10 +52,8 @@ angular.module('starter.controllers', [])
   $scope.goToToday = function() {
     if ($scope.login_form.$valid) {
       // Submit as normal
-      console.log("Valid form")
       $http.post("https://www.additiveanalytics.com/api_sessions", {"email": $scope.user.email,"password": $scope.user.password})
       .success(function(data){
-        console.log(data.authentication_token);
         $state.go('schedule/:attending_abbreviation/:date', {attending_abbreviation: $scope.user.attending_abbreviation, date: today});
         $stateParams.attending_abbreviation = $scope.user.attending_abbreviation;
         $stateParams.date = $scope.today;
@@ -63,12 +61,10 @@ angular.module('starter.controllers', [])
         localStorage.setItem("user_email", $scope.user.email);
         localStorage.setItem("attending_abbreviation", $scope.user.attending_abbreviation)})
       .error(function(data){
-        console.log("Bad email or password")
         $scope.unauthorized = true;
       });
     } else {
       $scope.login_form.submitted = true;
-      console.log("Invalid form")
     }
   }
 })
