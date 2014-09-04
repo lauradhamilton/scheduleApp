@@ -54,13 +54,13 @@ angular.module('starter.controllers', [])
       $http.post("https://www.additiveanalytics.com/api_sessions", {"email": $scope.user.email,"password": $scope.user.password})
       .success(function(data){
         console.log(data.authentication_token);
+        $state.go('schedule/:attending_abbreviation/:date', {attending_abbreviation: $scope.user.attending_abbreviation, date: today});
+        $stateParams.attending_abbreviation = $scope.user.attending_abbreviation;
+        $stateParams.date = $scope.today;
         localStorage.setItem("user_token", data.authentication_token);
         localStorage.setItem("user_email", $scope.user.email);
         localStorage.setItem("attending_abbreviation", $scope.user.attending_abbreviation)
       });
-    $state.go('schedule/:attending_abbreviation/:date', {attending_abbreviation: $scope.user.attending_abbreviation, date: today});
-    $stateParams.attending_abbreviation = $scope.user.attending_abbreviation;
-    $stateParams.date = $scope.today;
     } else {
       $scope.login_form.submitted = true;
       console.log("Invalid form")
