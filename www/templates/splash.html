@@ -9,21 +9,25 @@
        <small class="error" ng-show="login_form.email.$error.required">
          Your email is required.
        </small>
-       <small class="error" ng-show="user.password.$error.required">
+     </div>
+     <div class="error-container" ng-show="login_form.password.$dirty && login_form.password.$invalid">
+       <small class="error" ng-show="login_form.password.$error.required">
          Your password is required.
        </small>
-       <small class="error" ng-show="user.attending_abbreviation.$error.required">
-         Your password is required.
+     </div>
+     <div class="error-container" ng-show="login_form.attending_abbreviation.$dirty && login_form.attending_abbreviation.$invalid">
+       <small class="error" ng-show="login_form.attending_abbreviation.$error.required">
+         Your attending abbrevation is required.
        </small>
      </div>
      <label class="item item-input">
        <input type="email" placeholder="Email" ng-model="user.email" name="email" required>
      </label>
      <label class="item item-input">
-       <input type="password" placeholder="Password" ng-model="user.password">
+       <input type="password" placeholder="Password" ng-model="user.password" name="password">
      </label>
      <label class="item item-input">
-       <input type="text" placeholder="Attending Abbreviation" ng-model="user.attending_abbreviation">
+       <input type="text" placeholder="Attending Abbreviation" ng-model="user.attending_abbreviation" name="attending_abbreviation">
      </label>
      <div class="row" style="height: 300px">
        <div class="col col-center">
