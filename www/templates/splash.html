@@ -6,18 +6,18 @@
    <div class= "padding" ng-controller="SplashCtrl">
    <form name="login_form" novalidate ng-submit="goToToday()">
      <div class="error-container" ng-show="login_form.email.$dirty && login_form.email.$invalid">
-       <small class="error" ng-show="login_form.email.$error.required">
-         Your email is required.
+       <p class="error" ng-show="login_form.email.$error.required">
+         Email is required.
        </small>
      </div>
      <div class="error-container" ng-show="login_form.password.$dirty && login_form.password.$invalid">
-       <small class="error" ng-show="login_form.password.$error.required">
-         Your password is required.
+       <p class="error" ng-show="login_form.password.$error.required">
+         Password is required.
        </small>
      </div>
      <div class="error-container" ng-show="login_form.attending_abbreviation.$dirty && login_form.attending_abbreviation.$invalid">
-       <small class="error" ng-show="login_form.attending_abbreviation.$error.required">
-         Your attending abbrevation is required.
+       <p class="error" ng-show="login_form.attending_abbreviation.$error.required">
+         Attending abbrevation is required.
        </small>
      </div>
      <label class="item item-input">
