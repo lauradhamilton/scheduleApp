@@ -59,7 +59,9 @@ angular.module('starter.controllers', [])
         $stateParams.date = $scope.today;
         localStorage.setItem("user_token", data.authentication_token);
         localStorage.setItem("user_email", $scope.user.email);
-        localStorage.setItem("attending_abbreviation", $scope.user.attending_abbreviation)
+        localStorage.setItem("attending_abbreviation", $scope.user.attending_abbreviation)})
+      .error(function(data){
+        console.log("Bad email or password")
       });
     } else {
       $scope.login_form.submitted = true;
