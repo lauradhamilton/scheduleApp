@@ -4,8 +4,20 @@
      <h1 class="start">Physician Friend</h1>
    </div>
    <div class= "padding">
+   <form name="login_form" novalidate ng-submit="goToToday()">
+     <div class="error-container" ng-show="user.email.$dirty && user.email.$invalid">
+       <small class="error" ng-show="user.email.$error.required">
+         Your email is required.
+       </small>
+       <small class="error" ng-show="user.password.$error.required">
+         Your password is required.
+       </small>
+       <small class="error" ng-show="user.attending_abbreviation.$error.required">
+         Your password is required.
+       </small>
+     </div>
      <label class="item item-input">
-       <input type="email" placeholder="Email" ng-model="user.email">
+       <input type="email" placeholder="Email" ng-model="user.email" required>
      </label>
      <label class="item item-input">
        <input type="password" placeholder="Password" ng-model="user.password">
@@ -15,10 +27,12 @@
      </label>
      <div class="row" style="height: 300px">
        <div class="col col-center">
-     <button class ="button button-block" style="display: table-cell; vertical-align: middle" ng-click="goToToday()">
-       Continue
-     </button>
-     </div></div>
+         <button class ="button button-block" style="display: table-cell; vertical-align: middle" type="submit">
+           Continue
+         </button>
+       </div>
+     </div>
+   </form>
    </div>
   </ion-content>
 </ion-view>
