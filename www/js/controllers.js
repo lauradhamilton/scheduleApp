@@ -47,6 +47,8 @@ angular.module('starter.controllers', [])
     submitted: true
   }
 
+  $scope.unauthorized = false;
+
   $scope.goToToday = function() {
     if ($scope.login_form.$valid) {
       // Submit as normal
@@ -62,6 +64,7 @@ angular.module('starter.controllers', [])
         localStorage.setItem("attending_abbreviation", $scope.user.attending_abbreviation)})
       .error(function(data){
         console.log("Bad email or password")
+        $scope.unauthorized = true;
       });
     } else {
       $scope.login_form.submitted = true;

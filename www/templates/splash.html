@@ -8,17 +8,22 @@
      <div class="error-container" ng-show="login_form.email.$dirty && login_form.email.$invalid">
        <p class="error" ng-show="login_form.email.$error.required">
          Email is required.
-       </small>
+       </p>
      </div>
      <div class="error-container" ng-show="login_form.password.$dirty && login_form.password.$invalid">
        <p class="error" ng-show="login_form.password.$error.required">
          Password is required.
-       </small>
+       </p>
      </div>
      <div class="error-container" ng-show="login_form.attending_abbreviation.$dirty && login_form.attending_abbreviation.$invalid">
        <p class="error" ng-show="login_form.attending_abbreviation.$error.required">
          Attending abbrevation is required.
-       </small>
+       </p>
+     </div>
+     <div class="error-container" ng-if="unauthorized==true">
+       <p class="error">
+         Incorrect email or password.
+       </p>
      </div>
      <label class="item item-input">
        <input type="email" placeholder="Email" ng-model="user.email" name="email" required>
