@@ -9,7 +9,7 @@
     <div style="padding-top: 40px">
     <ion-list>
       <ion-item ng-repeat="appointment in appointments">
-        {{appointment.appointment_time|date: 'h:mm a'}} {{appointment.appointment_type_description}} {{appointment.patient_first_name}}
+        {{appointment.appointment_time}} {{appointment.appointment_type_description}} {{appointment.patient_first_name}}
       </ion-item>
     </ion-list>
     </div>

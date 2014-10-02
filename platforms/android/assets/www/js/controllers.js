@@ -33,11 +33,39 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('SplashCtrl', function($scope, $state, $stateParams, $filter) {
+.controller('SplashCtrl', function($scope, $state, $stateParams, $filter, $http) {
+
+  $scope.user = {
+    email: '',
+    password: '',
+    attending_abbreviation: ''
+  }
+
   var today = $filter('date') (new Date(), 'yyyyMMdd');
+
+  $scope.login_form = {
+    submitted: true
+  }
+
+  $scope.unauthorized = false;
+
   $scope.goToToday = function() {
-    $state.go('schedule/:date', {date: today});
-    $stateParams.date = $scope.today
+    if ($scope.login_form.$valid) {
+      // Submit as normal
+      $http.post("https://www.additiveanalytics.com/api_sessions", {"email": $scope.user.email,"password": $scope.user.password})
+      .success(function(data){
+        $state.go('schedule/:attending_abbreviation/:date', {attending_abbreviation: $scope.user.attending_abbreviation, date: today});
+        $stateParams.attending_abbreviation = $scope.user.attending_abbreviation;
+        $stateParams.date = $scope.today;
+        localStorage.setItem("user_token", data.authentication_token);
+        localStorage.setItem("user_email", $scope.user.email);
+        localStorage.setItem("attending_abbreviation", $scope.user.attending_abbreviation)})
+      .error(function(data){
+        $scope.unauthorized = true;
+      });
+    } else {
+      $scope.login_form.submitted = true;
+    }
   }
 })
 
@@ -52,12 +80,12 @@ angular.module('starter.controllers', [])
   var next_date = $filter('date') (new Date(data_date_year, data_date_month-1, data_date_day +1), 'yyyyMMdd');
   
   $scope.goToPreviousDate = function() {
-    $state.go('schedule/:date', {date: previous_date});
+    $state.go('schedule/:attending_abbreviation/:date', {attending_abbreviation: $stateParams.attending_abbreviation, date: previous_date});
     $stateParams.date = $scope.data_date;
   }
 
   $scope.goToNextDate = function() {
-    $state.go('schedule/:date', {date: next_date});
+    $state.go('schedule/:attending_abbreviation/:date', {attending_abbreviation: $stateParams.attending_abbreviation, date: next_date});
     $stateParams.date = $scope.data_date
   }
 
@@ -75,17 +103,17 @@ angular.module('starter.controllers', [])
     $timeout(function() {
       $scope.data[event.type]++;
       if (event.type == 'swipe' && event.gesture.direction == 'left') {
-        $state.go('schedule/:date', {date: next_date});
+        $state.go('schedule/:attending_abbreviation/:date', {attending_abbreviation: $stateParams.attending_abbreviation, date: next_date});
         $stateParams.date = $scope.date
       }
       if (event.gesture.direction == 'right') {
-        $state.go('schedule/:date', {date: previous_date});
+        $state.go('schedule/:attending_abbreviation/:date', {attending_abbreviation: $stateParams.attending_abbreviation, date: previous_date});
         $stateParams.date = $scope.date
       }
     })
   }
 
-  $http.get('https://www.additiveanalytics.com/api/schedule_app_api?appointment_date=' + $stateParams.date)
+  $http.post('https://www.additiveanalytics.com/api/schedule_app_api?appointment_date=' + $stateParams.date + "&attending_abbreviation=" + localStorage.getItem("attending_abbreviation"),{"user_email":localStorage.getItem("user_email"), "user_token":localStorage.getItem("user_token")})
     .success(function(data){
       $scope.appointments = data;
     })

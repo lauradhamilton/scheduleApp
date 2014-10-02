@@ -40,6 +40,7 @@
 /home/laura/Programs/scheduleApp/platforms/android/assets/www/templates \
 /home/laura/Programs/scheduleApp/platforms/android/assets/www/css \
 /home/laura/Programs/scheduleApp/platforms/android/assets/www/img/morning_coffee.jpg \
+/home/laura/Programs/scheduleApp/platforms/android/assets/www/img/doctor_512.png \
 /home/laura/Programs/scheduleApp/platforms/android/assets/www/img/ionic.png \
 /home/laura/Programs/scheduleApp/platforms/android/assets/www/plugins/org.apache.cordova.device \
 /home/laura/Programs/scheduleApp/platforms/android/assets/www/plugins/org.apache.cordova.device/www \
